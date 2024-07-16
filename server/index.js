@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const db = require("../server/models/index.js");
 const PORT = 3000;
 const app = express();
 
