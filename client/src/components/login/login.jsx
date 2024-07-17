@@ -12,7 +12,7 @@ function login() {
                   <input id="usernameInput" type="text" placeholder="Username" />
                   <i class='bx bxs-user'></i>
               </div>
-          <div class="inputBoxx">
+          <div className="inputBoxx">
                   <input id="passwordInput" type="password" placeholder="Password"/> 
                   <i class='bx bxs-lock-alt'></i>
               </div> 

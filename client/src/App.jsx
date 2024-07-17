@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-import Login from './login/login'
+import react from "react";
+
+import Login from './components/login/login.jsx'
+
 
 function App() {
   
