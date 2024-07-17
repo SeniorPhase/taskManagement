@@ -8,7 +8,7 @@ exports.createTodo = async (req, res) => {
       title,
       body,
       completed,
-      userId: req.user.id
+     // userId: req.user.id
     });
     res.json(todo);
   } catch (err) {
@@ -17,18 +17,32 @@ exports.createTodo = async (req, res) => {
   }
 };
 
+
+
+
+
+
+
+
 exports.getTodos = async (req, res) => {
+
+  id = req.params.userId
+  
   try {
     let todos;
-    const user = await User.findOne({ where: { id: req.user.id } });
+    const user = await User.findOne({ where: { id: id } });
 
     if (user.category === 'admin') {
       todos = await Todo.findAll();
+   
     } else {
-      todos = await Todo.findAll({ where: { userId: req.user.id } });
-    }
+     
+      todos = await Todo.findAll({ where: { userId: id } });
     
+      
+    }
     res.json(todos);
+    
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');
