@@ -20,7 +20,7 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-db.sequelize.sync({ alter: true })
+db.sequelize.sync()
   .then(() => {
     console.log('Database & tables created!');
   });
