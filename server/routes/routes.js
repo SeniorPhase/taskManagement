@@ -17,7 +17,7 @@ router.post('/todos',  todoController.createTodo);
 router.get('/todos/:userId',  todoController.getTodos);
 router.put('/todos/:id', todoController.updateTodo);
 router.delete('/todos/:id',  todoController.deleteTodo);
-
+console.log('heloo');
 // User routes
 router.post('/users', user.createUser);
 router.get('/users/:id',  user.getUser);
