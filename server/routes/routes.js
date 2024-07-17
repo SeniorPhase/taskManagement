@@ -1,8 +1,8 @@
 const express = require('express');
-const todoController = require('../controllers/todoController');
-const userController = require('../controllers/userController');
-const authController = require('../controllers/authController');
-const authMiddleware = require('../middlewares/authMiddleware');
+const todoController = require('../controllers/todoController.js');
+const user = require('../controllers/user.js');
+const authController = require('../controllers/authController.js');
+const authMiddleware = require('../middlewares/authMiddleware.js');
 
 const router = express.Router();
 
@@ -11,15 +11,17 @@ router.post('/register', authController.register);
 router.post('/login', authController.login);
 
 // Todo routes
-router.post('/todos', authMiddleware, todoController.createTodo);
-router.get('/todos', authMiddleware, todoController.getTodos);
-router.put('/todos/:id', authMiddleware, todoController.updateTodo);
-router.delete('/todos/:id', authMiddleware, todoController.deleteTodo);
+//router.get('/users/:userId/todos/:category', todoController.getTodosByCategory);
 
+router.post('/todos',  todoController.createTodo);
+router.get('/todos/:userId',  todoController.getTodos);
+router.put('/todos/:id', todoController.updateTodo);
+router.delete('/todos/:id',  todoController.deleteTodo);
+console.log('heloo');
 // User routes
-router.post('/users', userController.createUser);
-router.get('/users/:id', authMiddleware, userController.getUser);
-router.put('/users/:id', authMiddleware, userController.updateUser);
-router.delete('/users/:id', authMiddleware, userController.deleteUser);
+router.post('/users', user.createUser);
+router.get('/users/:id',  user.getUser);
+router.put('/users/:id',  user.updateUser);
+router.delete('/users/:id',  user.deleteUser);
 
 module.exports = router;
