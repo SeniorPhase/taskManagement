@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs'); // Ensure bcrypt is required
 
 exports.createUser = async (req, res) => {
   const { username, email, password, category } = req.body;
-
+console.log("azaa");
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
