@@ -9,7 +9,7 @@ const router = require('./routes/routes.js')
 app.use(express.json());
 app.use(cors());
 
-app.get('/api',router)
+app.use('/api',router)
 
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`);
