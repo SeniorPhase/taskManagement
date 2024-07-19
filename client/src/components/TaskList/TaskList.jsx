@@ -72,7 +72,7 @@ const TaskList = ({ userId }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...newTask, userId }), // Assuming the task has a userId field
+        body: JSON.stringify({ ...newTask, userId }),
       });
       if (!response.ok) {
         throw new Error('Failed to add task');
@@ -80,7 +80,7 @@ const TaskList = ({ userId }) => {
 
       const newTaskFromServer = await response.json();
       setTasks(prevTasks => [...prevTasks, newTaskFromServer]);
-      setNewTask({ title: '', body: '' }); // Clear the form
+      setNewTask({ title: '', body: '' }); 
     } catch (error) {
       setError(error.message);
     }
