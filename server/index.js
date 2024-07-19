@@ -8,9 +8,7 @@ const router = require('./routes/routes.js')
 
 app.use(express.json());
 app.use(cors());
-app.get("/test", (req, res) => {
-  res.send({ data: 10 });
-});
+
 app.use('/api',router)
 
 app.listen(PORT, () => {

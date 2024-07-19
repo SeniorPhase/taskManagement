@@ -10,17 +10,11 @@ const Sidebar = () => {
         <ListItem button component={Link} to="/dashboard">
           <ListItemText primary="Dashboard" />
         </ListItem>
-        <ListItem button component={Link} to="/tasks">
+        <ListItem button component={Link} to="/TaskList">
           <ListItemText primary="My tasks" />
         </ListItem>
-        <ListItem button component={Link} to="/notifications">
-          <ListItemText primary="Notifications" />
-        </ListItem>
-        <Divider />
-        <ListItem button component={Link} to="/settings">
-          <ListItemText primary="Settings" />
-        </ListItem>
-        <ListItem button component={Link} to="/logout">
+        
+        <ListItem button component={Link} to="/login">
           <ListItemText primary="Log out" />
         </ListItem>
       </List>

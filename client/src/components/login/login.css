@@ -93,6 +93,15 @@ body {
     color: #6943a8;
     transition: 0.7s;
 }
+.error{
+    color: #ffffff;
+    font-size: 20px;
+    background: transparent;
+    border: 2px solid #6943a8;
+    border-radius: 10px;
+    
+    text-align: center;
+}
 
 @media (max-width: 768px) {
     .wrapper {

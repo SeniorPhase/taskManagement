@@ -1,22 +1,65 @@
-
-import React from 'react';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './login.css';
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await axios.post('http://localhost:3000/api/login', {
+        email,
+        password
+      });
+
+      localStorage.setItem('token', response.data.token);
+      navigate('/dashboard');
+      
+    } catch (error) {
+      setError('Invalid credentials');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="wrapper">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="inputBox">
-          <input id="usernameInput" type="text" placeholder="Username" />
+          <input
+            id="emailInput"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
           <i className='bx bxs-user'></i>
         </div>
         <div className="inputBoxx">
-          <input id="passwordInput" type="password" placeholder="Password" />
+          <input
+            id="passwordInput"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
           <i className='bx bxs-lock-alt'></i>
         </div>
-        <button type="submit" className="btn" to="/dashbord">LOGIN</button>
-        <Link className='btn' to="/dashbord">Signup</Link>
+        <button className="btn" type="submit" disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
+        {error && <div className="error">{error}</div>}
       </form>
     </div>
   );
