@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
+    setError(null);
 
     try {
       const response = await axios.post('http://localhost:3000/api/login', {
@@ -16,11 +22,12 @@ function Login() {
       });
 
       localStorage.setItem('token', response.data.token);
-      alert('Login successful');
+      navigate('/dashboard');
       
     } catch (error) {
-      console.error('Error logging in:', error);
-      alert('Invalid credentials');
+      setError('Invalid credentials');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -30,10 +37,11 @@ function Login() {
         <div className="inputBox">
           <input
             id="emailInput"
-            type="text"
+            type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <i className='bx bxs-user'></i>
         </div>
@@ -44,10 +52,14 @@ function Login() {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <i className='bx bxs-lock-alt'></i>
         </div>
-        <button className="btn" type="submit">LOGIN</button>
+        <button className="btn" type="submit" disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
+        {error && <div className="error">{error}</div>}
       </form>
     </div>
   );
