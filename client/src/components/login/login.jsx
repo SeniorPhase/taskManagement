@@ -1,32 +1,25 @@
-import React from 'react'
 
-import './login.css'
+import React from 'react';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import './login.css';
 
-
-function login() {
+function Login() {
   return (
-    <>
-     <div class="wrapper">
-     <form action="">  
-          <div class="inputBox">
-                  <input id="usernameInput" type="text" placeholder="Username" />
-                  <i class='bx bxs-user'></i>
-              </div>
-          <div className="inputBoxx">
-                  <input id="passwordInput" type="password" placeholder="Password"/> 
-                  <i class='bx bxs-lock-alt'></i>
-              </div> 
-
-              <button class="btn"> LOGIN </button>
- 
-       </form>  
- </div>
-    
-    
-    
-    
-    </>
-  )
+    <div className="wrapper">
+      <form>
+        <div className="inputBox">
+          <input id="usernameInput" type="text" placeholder="Username" />
+          <i className='bx bxs-user'></i>
+        </div>
+        <div className="inputBoxx">
+          <input id="passwordInput" type="password" placeholder="Password" />
+          <i className='bx bxs-lock-alt'></i>
+        </div>
+        <button type="submit" className="btn" to="/dashbord">LOGIN</button>
+        <Link className='btn' to="/dashbord">Signup</Link>
+      </form>
+    </div>
+  );
 }
 
-export default login
+export default Login;
